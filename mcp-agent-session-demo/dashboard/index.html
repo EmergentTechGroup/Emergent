@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<title>MCP Agent Session Demo</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --panel: #131a2e;
+    --panel-2: #1a2340;
+    --ink: #e8edf8;
+    --muted: #8b97b8;
+    --line: #243056;
+    --github: #58a6ff;
+    --x: #e7e9ea;
+    --euler: #5eead4;
+    --origin: #c4b5fd;
+    --ok: #34d399;
+    --wait: #fbbf24;
+    --fail: #f87171;
+    --accent: #818cf8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: radial-gradient(1200px 700px at 10% -10%, #1a2450 0%, transparent 55%),
+                radial-gradient(900px 600px at 110% 10%, #12353a 0%, transparent 50%),
+                var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", Inter, "Noto Sans", sans-serif;
+    overflow: hidden;
+  }
+  .shell {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    padding: 22px 28px 16px;
+    gap: 16px;
+  }
+  header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .brand h1 {
+    font-family: Outfit, Inter, sans-serif;
+    font-weight: 600;
+    font-size: 34px;
+    letter-spacing: -0.03em;
+  }
+  .brand p {
+    color: var(--muted);
+    margin-top: 4px;
+    font-size: 15px;
+  }
+  .pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .pill {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    background: rgba(255,255,255,0.03);
+  }
+  .pill.ready { color: var(--ok); border-color: #14532d; background: rgba(52,211,153,0.08); }
+  .meta {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .clock {
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 28px;
+    color: var(--ink);
+  }
+  .meta .sub { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(251,191,36,0.12);
+    color: var(--wait);
+    border: 1px solid rgba(251,191,36,0.3);
+  }
+  .badge.live { background: rgba(52,211,153,0.12); color: var(--ok); border-color: rgba(52,211,153,0.3); }
+  .badge.done { background: rgba(129,140,248,0.12); color: #c7d2fe; border-color: rgba(129,140,248,0.3); }
+  main {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 18px;
+    min-height: 0;
+  }
+  .panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 40%), var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .panel h2 {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 14px 18px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .steps {
+    overflow: auto;
+    padding: 8px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 10px;
+    align-items: start;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+  }
+  .step.active {
+    background: var(--panel-2);
+    border-color: #33407a;
+  }
+  .step.ok { opacity: 1; }
+  .step.pending { opacity: 0.45; }
+  .num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+  .step-title { font-size: 14.5px; font-weight: 500; }
+  .step-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .conn {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+  .conn.github { color: var(--github); background: rgba(88,166,255,0.12); }
+  .conn.x { color: #111; background: #e7e9ea; }
+  .conn.euler { color: var(--euler); background: rgba(94,234,212,0.12); }
+  .conn.origin { color: var(--origin); background: rgba(196,181,253,0.12); }
+  .conn.local { color: #fde68a; background: rgba(253,230,138,0.12); }
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    display: inline-block; margin-right: 6px;
+  }
+  .status-dot.ok { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+  .status-dot.run { background: var(--wait); box-shadow: 0 0 8px var(--wait); animation: pulse 1.2s infinite; }
+  .status-dot.wait { background: #3b4568; }
+  .status-dot.fail { background: var(--fail); }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+  .detail {
+    padding: 22px 26px 26px;
+    overflow: auto;
+    flex: 1;
+  }
+  .detail-kicker {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .detail h3 { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
+  .detail .tool {
+    font-family: "IBM Plex Mono", monospace;
+    color: var(--muted);
+    margin-top: 6px;
+    font-size: 14px;
+  }
+  .result {
+    margin-top: 22px;
+    background: #0d1426;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+    font-size: 15px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    min-height: 160px;
+    color: #d7def0;
+  }
+  .result.empty { color: #5c6a8e; }
+  .stats {
+    display: flex;
+    gap: 14px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 14px;
+    min-width: 120px;
+  }
+  .stat b { display: block; font-size: 20px; font-weight: 600; }
+  .stat span { color: var(--muted); font-size: 12px; }
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 0 4px;
+  }
+  footer strong { color: var(--ok); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand">
+        <h1>MCP Agent Session Demo</h1>
+        <p>A read-only, long-running walkthrough across connected MCP connectors.</p>
+        <div class="pills" id="pills"></div>
+      </div>
+      <div class="meta">
+        <div class="clock" id="clock">--:--:--</div>
+        <div class="sub">America/New_York · Friday 13 Nov 2026</div>
+        <div class="badge" id="badge">STANDBY</div>
+      </div>
+    </header>
+    <main>
+      <section class="panel">
+        <h2>Session steps</h2>
+        <div class="steps" id="steps"></div>
+      </section>
+      <section class="panel">
+        <h2>Live result</h2>
+        <div class="detail">
+          <div class="detail-kicker" id="kicker">Waiting to start</div>
+          <h3 id="dtitle">Preparing the session</h3>
+          <div class="tool" id="dtool">No tool called yet</div>
+          <div class="result empty" id="dresult">Results will appear here as each read-only MCP call completes. Private identifiers, emails, and private repository names are redacted.</div>
+          <div class="stats" id="stats"></div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div><strong>READ-ONLY</strong> · no posts, comments, issues, PRs, or writes on any connector</div>
+      <div>Local prep only · no GitHub repo will be created or pushed</div>
+    </footer>
+  </div>
+<script>
+const tz = "America/New_York";
+function tick() {
+  const now = new Date();
+  document.getElementById("clock").textContent = now.toLocaleTimeString("en-US", {timeZone: tz, hour12: false});
+}
+tick(); setInterval(tick, 250);
+
+const connClass = (c) => {
+  const k = (c||"").toLowerCase();
+  if (k.includes("github")) return "github";
+  if (k === "x") return "x";
+  if (k.includes("euler")) return "euler";
+  if (k.includes("origin")) return "origin";
+  return "local";
+};
+
+function render(data) {
+  const pills = document.getElementById("pills");
+  pills.innerHTML = (data.connectors||[]).map(c =>
+    `<span class="pill ${c.status==="ready"?"ready":""}">${c.name} · ${c.status}</span>`
+  ).join("");
+
+  const badge = document.getElementById("badge");
+  badge.textContent = (data.status||"STANDBY").toUpperCase();
+  badge.className = "badge " + (data.status==="live"?"live":data.status==="complete"?"done":"");
+
+  const steps = data.steps || [];
+  const el = document.getElementById("steps");
+  el.innerHTML = steps.map((s,i) => {
+    const st = s.status || "pending";
+    const cls = st==="ok"?"ok":st==="running"?"active":"pending";
+    const dot = st==="ok"?"ok":st==="running"?"run":st==="error"?"fail":"wait";
+    return `<div class="step ${cls}" data-i="${i}">
+      <div class="num">${String(s.n).padStart(2,"0")}</div>
+      <div>
+        <div class="step-title"><span class="status-dot ${dot}"></span>${s.title}</div>
+        <div class="step-sub">${s.tool || ""}</div>
+      </div>
+      <div class="conn ${connClass(s.connector)}">${s.connector}</div>
+    </div>`;
+  }).join("");
+
+  const current = [...steps].reverse().find(s => s.status==="running")
+    || [...steps].reverse().find(s => s.status==="ok" || s.status==="error")
+    || steps[0];
+  if (current) {
+    document.getElementById("kicker").textContent =
+      (current.status==="running"?"In progress":current.status==="ok"?"Completed":current.status==="error"?"Error":"Queued")
+      + (current.timestamp ? " · " + current.timestamp : "");
+    document.getElementById("dtitle").textContent = current.title;
+    document.getElementById("dtool").textContent = current.connector + " / " + (current.tool||"");
+    const res = document.getElementById("dresult");
+    if (current.summary) {
+      res.textContent = current.summary;
+      res.classList.remove("empty");
+    } else {
+      res.textContent = "Calling tool…";
+      res.classList.add("empty");
+    }
+  }
+
+  const done = steps.filter(s => s.status==="ok").length;
+  const err = steps.filter(s => s.status==="error").length;
+  document.getElementById("stats").innerHTML = `
+    <div class="stat"><b>${done}/${steps.length}</b><span>steps complete</span></div>
+    <div class="stat"><b>${(data.connectors||[]).filter(c=>c.status==="ready").length}</b><span>connectors ready</span></div>
+    <div class="stat"><b>${err}</b><span>errors</span></div>
+    <div class="stat"><b>read-only</b><span>writes issued: 0</span></div>
+  `;
+}
+
+async function poll() {
+  try {
+    const r = await fetch("/logs/steps.json?t=" + Date.now(), {cache:"no-store"});
+    if (r.ok) render(await r.json());
+  } catch (e) {}
+}
+poll(); setInterval(poll, 400);
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" role="img" aria-label="Session timeline of 14 MCP steps from 12:12:57 to 12:15:30 EST">
+<rect width="100%" height="100%" fill="#0b1020"/>
+<text x="40" y="42" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="26" font-weight="600">Session timeline</text>
+<text x="40" y="70" fill="#8b97b8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="13">Durations are finished_at − started_at from logs/steps.json · 12:12:57–12:15:30 EST · America/New_York · 13 Nov 2026</text>
+<line x1="228.6" y1="96" x2="228.6" y2="686" stroke="#243056" stroke-width="1"/>
+<text x="200.6" y="704" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">12:13:00</text>
+<line x1="414.9" y1="96" x2="414.9" y2="686" stroke="#243056" stroke-width="1"/>
+<text x="386.9" y="704" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">12:13:30</text>
+<line x1="601.2" y1="96" x2="601.2" y2="686" stroke="#243056" stroke-width="1"/>
+<text x="573.2" y="704" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">12:14:00</text>
+<line x1="787.5" y1="96" x2="787.5" y2="686" stroke="#243056" stroke-width="1"/>
+<text x="759.5" y="704" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">12:14:30</text>
+<line x1="973.7" y1="96" x2="973.7" y2="686" stroke="#243056" stroke-width="1"/>
+<text x="945.7" y="704" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">12:15:00</text>
+<line x1="1160.0" y1="96" x2="1160.0" y2="686" stroke="#243056" stroke-width="1"/>
+<text x="1132.0" y="704" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">12:15:30</text>
+<line x1="210" y1="686" x2="1160" y2="686" stroke="#50608c" stroke-width="1.2"/>
+<text x="40" y="116.0" fill="rgb(88,166,255)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">01  GitHub</text>
+<text x="40" y="132.0" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">get_me</text>
+<rect x="210.0" y="108.0" width="74.5" height="17.4" rx="4" fill="rgb(88,166,255)"/>
+<text x="290.5" y="126.0" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">12s</text>
+<text x="40" y="157.4" fill="rgb(88,166,255)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">02  GitHub</text>
+<text x="40" y="173.4" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">list_my_repositories</text>
+<rect x="309.3" y="149.4" width="55.9" height="17.4" rx="4" fill="rgb(88,166,255)"/>
+<text x="371.2" y="167.4" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">9s</text>
+<text x="40" y="198.9" fill="rgb(88,166,255)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">03  GitHub</text>
+<text x="40" y="214.9" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">search_repositories</text>
+<rect x="390.1" y="190.9" width="37.3" height="17.4" rx="4" fill="rgb(88,166,255)"/>
+<text x="433.3" y="208.9" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">6s</text>
+<text x="40" y="240.3" fill="rgb(88,166,255)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">04  GitHub</text>
+<text x="40" y="256.3" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">get_repository</text>
+<rect x="452.2" y="232.3" width="31.0" height="17.4" rx="4" fill="rgb(88,166,255)"/>
+<text x="489.2" y="250.3" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">5s</text>
+<text x="40" y="281.7" fill="rgb(88,166,255)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">05  GitHub</text>
+<text x="40" y="297.7" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">get_file_contents</text>
+<rect x="508.0" y="273.7" width="24.8" height="17.4" rx="4" fill="rgb(88,166,255)"/>
+<text x="538.9" y="291.7" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">4s</text>
+<text x="40" y="323.1" fill="rgb(88,166,255)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">06  GitHub</text>
+<text x="40" y="339.1" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">get_latest_release</text>
+<rect x="557.7" y="315.1" width="37.3" height="17.4" rx="4" fill="rgb(88,166,255)"/>
+<text x="601.0" y="333.1" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">6s</text>
+<text x="40" y="364.6" fill="rgb(231,233,234)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">07  X</text>
+<text x="40" y="380.6" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">get_trends_by_woeid</text>
+<rect x="626.0" y="356.6" width="43.5" height="17.4" rx="4" fill="rgb(231,233,234)"/>
+<text x="675.5" y="374.6" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">7s</text>
+<text x="40" y="406.0" fill="rgb(231,233,234)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">08  X</text>
+<text x="40" y="422.0" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">search_news</text>
+<rect x="694.3" y="398.0" width="49.7" height="17.4" rx="4" fill="rgb(231,233,234)"/>
+<text x="750.0" y="416.0" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">8s</text>
+<text x="40" y="447.4" fill="rgb(231,233,234)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">09  X</text>
+<text x="40" y="463.4" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">get_users_by_username</text>
+<rect x="768.8" y="439.4" width="31.0" height="17.4" rx="4" fill="rgb(231,233,234)"/>
+<text x="805.9" y="457.4" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">5s</text>
+<text x="40" y="488.9" fill="rgb(231,233,234)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">10  X</text>
+<text x="40" y="504.9" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">get_posts_counts_recent</text>
+<rect x="824.7" y="480.9" width="49.7" height="17.4" rx="4" fill="rgb(231,233,234)"/>
+<text x="880.4" y="498.9" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">8s</text>
+<text x="40" y="530.3" fill="rgb(94,234,212)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">11  Euler</text>
+<text x="40" y="546.3" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">euler_help</text>
+<rect x="905.4" y="522.3" width="43.5" height="17.4" rx="4" fill="rgb(94,234,212)"/>
+<text x="954.9" y="540.3" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">7s</text>
+<text x="40" y="571.7" fill="rgb(94,234,212)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">12  Euler</text>
+<text x="40" y="587.7" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">ping</text>
+<rect x="973.7" y="563.7" width="43.5" height="17.4" rx="4" fill="rgb(94,234,212)"/>
+<text x="1023.2" y="581.7" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">7s</text>
+<text x="40" y="613.1" fill="rgb(196,181,253)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">13  Origin</text>
+<text x="40" y="629.1" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">list_namespaces</text>
+<rect x="1042.0" y="605.1" width="49.7" height="17.4" rx="4" fill="rgb(196,181,253)"/>
+<text x="1097.7" y="623.1" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">8s</text>
+<text x="40" y="654.6" fill="rgb(196,181,253)" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">14  Origin</text>
+<text x="40" y="670.6" fill="#8b97b8" font-family="ui-monospace, monospace" font-size="11">list_repositories</text>
+<rect x="1116.5" y="646.6" width="43.5" height="17.4" rx="4" fill="rgb(196,181,253)"/>
+<text x="1166.0" y="664.6" fill="#e8edf8" font-family="ui-sans-serif, Helvetica, Arial, sans-serif" font-size="12">7s</text>
+</svg>
